@@ -1,0 +1,53 @@
+%! Author = zjsdu
+%! Date = 2022/7/7
+
+% Preamble
+\documentclass{ctexbeamer}
+\title{树状数组}
+\author{邹家树}
+% Packages
+\usepackage{amsmath}
+\usepackage{tcolorbox}
+\usepackage{annotate-equations}
+% Document
+\begin{document}
+\maketitle
+
+\begin{frame}{正整数的二进制表示}
+\begin{equation*}
+10 =
+\eqnmarkbox[blue]{msb}{1}
+0
+1
+\eqnmarkbox[green]{lsb}{0}_2
+\end{equation*}
+
+\annotate[yshift=1em]{left}{msb}{最高位，第$3$位}
+\annotate[yshift=-0.5em]{below}{lsb}{最低位，第$0$位}
+
+
+
+
+\end{frame}
+
+\begin{frame}{lowbit函数}
+对于正整数 $x$ 定义函数lowbit(x)为x的二进制表示里最右的$1$的权值。
+
+\begin{equation*}
+10 =
+1
+0
+\eqnmarkbox[blue]{lowbit}{1}
+0_2
+\end{equation*}
+
+\annotate[yshift=1em]{}{lowbit}{lowbit}
+
+\end{frame}
+
+
+\begin{frame}{介绍}
+$A_1, A_2, \dots, A_n$ 是整数序列。
+\end{frame}
+
+\end{document}
