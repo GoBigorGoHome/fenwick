@@ -9,6 +9,8 @@
 \usepackage{amsmath}
 \usepackage{tcolorbox}
 \usepackage{annotate-equations}
+
+\newcommand{\lb}{\mathrm{lowbit}}
 % Document
 \begin{document}
 \maketitle
@@ -22,16 +24,15 @@
 \eqnmarkbox[green]{lsb}{0}_2
 \end{equation*}
 
-\annotate[yshift=1em]{left}{msb}{最高位，第$3$位}
+\annotate[yshift=0.5em]{left}{msb}{最高位，第$3$位}
 \annotate[yshift=-0.5em]{below}{lsb}{最低位，第$0$位}
-
 
 
 
 \end{frame}
 
 \begin{frame}{lowbit函数}
-对于正整数 $x$ 定义函数lowbit(x)为x的二进制表示里最右的$1$的权值。
+对于正整数 $x$ 定义函数$\lb(x)$为$x$的二进制表示里最右的$1$的权值。
 
 \begin{equation*}
 10 =
