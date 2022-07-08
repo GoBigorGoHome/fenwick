@@ -65,17 +65,32 @@
 \end{frame}
 
 
-\begin{frame}{计算 lowbit(x)}
+\begin{frame}[fragile]{计算 lowbit(x)}
 
 \begin{tcolorbox}
   lowbit(x) = x \& -x
 \end{tcolorbox}
 
-$-x$的补码是 $x$的二进制表示取反再加一。以 $x = 10$ 为例，$-10$ 的补码可由 $10$的二进制表示经取反和加一两操作得到
+  $-x$的补码是 $x$的二进制表示取反再加一。
 
+以 $x = 10$ 为例，$-10$ 的补码可由 $10$的二进制表示经取反和加一两操作得到
+
+\vspace{2em}
 \begin{equation*}
-  \str{1010} \xto{取反} \str{0101} \xto{加一} \str{0110}。
+  \eqnmarkbox[red]{high1}{\str{10}}
+  \eqnmarkbox[blue]{low1}{\str{10}}
+  \xto{取反} \str{0101} \xto{加一}
+  \eqnmarkbox[red]{high2}{\str{01}}
+  \eqnmarkbox[blue]{low2}{\str{10}}
 \end{equation*}
+
+\annotatetwo[yshift=-1em]{below}{low1}{low2}{lowbit 以下的位不变}
+\annotatetwo[yshift=1em]{above}{high1}{high2}{lowbit 以上的位取反}
+
+\vspace{1em}
+\begin{tcolorbox}
+  \[\str{.....10000} \xto{取反} \str{*****01111} \xto{加一} \str{*****10000}\]
+\end{tcolorbox}
 
 
 \end{frame}
