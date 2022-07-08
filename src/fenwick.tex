@@ -10,7 +10,10 @@
 \usepackage{tcolorbox}
 \usepackage{annotate-equations}
 
-\newcommand{\lb}{\mathrm{lowbit}}
+\newcommand{\lb}{\mathsf{lowbit}}
+\newcommand{\popc}{\mathsf{popcount}}
+\newcommand{\str}[1]{\texttt{#1}}
+\newcommand{\xto}[1]{\xrightarrow{\text{#1}}}
 % Document
 \begin{document}
 \maketitle
@@ -20,35 +23,80 @@
 10 =
 \eqnmarkbox[blue]{msb}{1}
 0
-1
+\eqnmarkbox[purple]{lowbit}{1}
 \eqnmarkbox[green]{lsb}{0}_2
 \end{equation*}
 
 \annotate[yshift=0.5em]{left}{msb}{最高位，第$3$位}
 \annotate[yshift=-0.5em]{below}{lsb}{最低位，第$0$位}
-
-
+\annotate[yshift=0.5em]{right}{lowbit}{最低非零位}
 
 \end{frame}
 
+
+\begin{frame}{popcount 函数}
+
+对于非负整数$n$，定义函数$\popc(n)$ 为$n$的二进制表示里$1$的个数。
+
+例如$\popc(10) = 2$，$\popc(2^{k}) = 1$，$\popc(0) = 0$。
+
+\end{frame}
+
+
 \begin{frame}{lowbit函数}
-对于正整数 $x$ 定义函数$\lb(x)$为$x$的二进制表示里最右的$1$的权值。
+对于正整数 $x$ 定义函数$\lb(x)$为$x$的二进制表示里最低非零位对应的幂。
+
+\begin{block}{}
+  例如 $\lb(10) = 2$，$\lb(2^{n}) = 2^{n}$，$\lb(2k+1) = 1$。
+\end{block}
+
+\begin{block}{}
+  \begin{equation*}
+  10 =
+  1
+  0
+  \eqnmarkbox[blue]{lowbit}{1}
+  0_2
+  \end{equation*}
+\end{block}
+\annotate[yshift=0.5em]{}{lowbit}{lowbit}
+
+规定 $\lb(0) = 0$。
+\end{frame}
+
+
+\begin{frame}{计算 lowbit(x)}
+
+\begin{tcolorbox}
+  lowbit(x) = x \& -x
+\end{tcolorbox}
+
+$-x$的补码是 $x$的二进制表示取反再加一。以 $x = 10$ 为例，$-10$ 的补码可由 $10$的二进制表示经取反和加一两操作得到
 
 \begin{equation*}
-10 =
-1
-0
-\eqnmarkbox[blue]{lowbit}{1}
-0_2
+  \str{1010} \xto{取反} \str{0101} \xto{加一} \str{0110}。
 \end{equation*}
 
-\annotate[yshift=1em]{}{lowbit}{lowbit}
 
 \end{frame}
 
 
 \begin{frame}{介绍}
-$A_1, A_2, \dots, A_n$ 是整数序列。
+对于整数序列$A_1, A_2, \dots, A_n$，定义整数序列$B_1, B_2, \dots, B_n$ 如下
+
+\begin{equation*}
+  B_i = A_{i-\lb(i) + 1} + A_{i-\lb(i) + 2} + \dots + A_i，
+\end{equation*}
+
+换言之，$B_i$ 是数列 $A$ 里从第 $i$ 项往前的连续 $\lb(i)$ 项之和。
+
+数列 $B$ 可以用来求数列 $A$ 的前缀和，例如
+
+\begin{equation*}
+A_1 + \dots + A_{10} = B_{10} + B_{8}
+\end{equation*}
+
+\tcbox{$A_1 + \dots + A_i$ 可以表为 $B$ 里 $\popc(i)$ 项之和。}
 \end{frame}
 
 \end{document}

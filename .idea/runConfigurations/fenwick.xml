@@ -4,9 +4,9 @@
       <compiler>LATEXMK</compiler>
       <compiler-path />
       <sumatra-path />
-      <pdf-viewer>SUMATRA</pdf-viewer>
+      <pdf-viewer>EVINCE</pdf-viewer>
       <viewer-command />
-      <compiler-arguments>-xelatex</compiler-arguments>
+      <compiler-arguments>-pdfxe</compiler-arguments>
       <envs />
       <main-file>$PROJECT_DIR$/src/fenwick.tex</main-file>
       <output-path>$PROJECT_DIR$/out</output-path>
