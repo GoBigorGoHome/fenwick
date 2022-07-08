@@ -9,6 +9,7 @@
 \usepackage{amsmath}
 \usepackage{tcolorbox}
 \usepackage{annotate-equations}
+\usepackage{graphicx}
 
 \newcommand{\lb}{\mathsf{lowbit}}
 \newcommand{\popc}{\mathsf{popcount}}
@@ -112,6 +113,69 @@ A_1 + \dots + A_{10} = B_{10} + B_{8}
 \end{equation*}
 
 \tcbox{$A_1 + \dots + A_i$ 可以表为 $B$ 里 $\popc(i)$ 项之和。}
+
+\end{frame}
+
+\begin{frame}{数列$B$的特点}
+
+\begin{figure}
+    \centering
+    \includegraphics{imgs/bit}
+%    \caption{}
+%    \label{fig:}
+\end{figure}
+
+\begin{tcolorbox}
+  对于两个下标 $i$，$j$（$i < j$），$B_i$对应的段要么包含在 $B_j$ 对应的段里，要么 $B_i$ 对应的段和 $B_j$ 对应的段不相交。
+\end{tcolorbox}
+
+
+你能证明这个结论吗？
+
+\end{frame}
+
+
+\begin{frame}{数列$B$的特点}
+
+\end{frame}
+
+
+\begin{frame}{哪些 $B_j$ 含有 $A_i$}
+
+$B_i$ 是数列 $A$ 里以 $A_i$ 结尾含有 $\lb(i)$ 项的那一段之和。固定 $A_i$，$B$ 的哪些项对应的段里有 $A_i$？
+\begin{itemize}
+    \item $B_i$ 里有 $A_i$。
+    \item 若 $B_j$ 里有 $A_i$ 则 $j \ge i$。
+\end{itemize}
+
+对于 $j > i$，若要 $B_j$ 里有 $A_i$，$j$ 要满足什么条件？只要满足
+
+\begin{equation}
+    j - \lb(j) < i \label{eq:1}
+\end{equation}
+
+\begin{block}{什么样的 $j$ 满足 $\eqref{eq:1}$？}
+  既然 $j > i$，设 $j$ 比 $i$ 大的最高位是第 $k$ 位，
+ 即在第$k$位之前 $j$ 和 $i$ 都相等，在第 $k$ 位上 $j$ 是 $1$而$i$ 是$0$。第一个必要条件是
+ \[\lb(j) = k\]
+若不然就有 $\lb(j) < k$，$j - \lb(j)$ 仍大于 $i$。
+\end{block}
+
+\end{frame}
+
+
+\begin{frame}{}
+第二个必要条件是
+\[k > \lb(i)\]
+若不然就有  $k < \lb(i)$，则$j - \lb(j) = i$。
+上述两必要条件合起来就是充分条件。
+\begin{tcolorbox}
+  \begin{itemize}
+      \item $\lb(j) > \lb(i)$
+      \item 在 $\lb(j)$ 之前的位上 $j$ 和 $i$ 相等，在$\lb(j)$ 对应的位上 $j$ 是 $1$，$i$ 是$0$。
+  \end{itemize}
+\end{tcolorbox}
+以 $i = 1010_2$ 为例，$j > i$ 且 $B_j$ 里有 $A_i$ 的下标 $j$ 有 $1100_2, 10000_2, 100000_2, \dots$。
 \end{frame}
 
 \end{document}
